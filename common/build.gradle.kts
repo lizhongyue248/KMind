@@ -5,6 +5,7 @@ import org.jetbrains.compose.compose
 plugins {
   kotlin("multiplatform")
   id("org.jetbrains.compose") version "1.1.1"
+  id("org.asciidoctor.jvm.convert") version "3.1.0"
   id("com.android.library")
 }
 
@@ -21,6 +22,8 @@ kotlin {
   sourceSets {
     named("commonMain") {
       dependencies {
+        implementation("org.asciidoctor:asciidoctorj:2.5.2")
+        implementation("org.asciidoctor:asciidoctorj-api:2.5.2")
         api(compose.runtime)
         api(compose.foundation)
         api(compose.material)

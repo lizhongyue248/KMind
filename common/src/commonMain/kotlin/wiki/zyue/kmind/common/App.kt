@@ -14,6 +14,10 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
+import wiki.zyue.kmind.common.asciidoc.AsciidocParse
+import wiki.zyue.kmind.common.asciidoc.AsciidoctorK.asciidoctor
+import wiki.zyue.kmind.common.asciidoc.AsciidoctorK.options
+
 
 @Composable
 fun App() {
@@ -32,9 +36,11 @@ fun App() {
       value = textFieldValueState.value,
       onValueChange = { value ->
         textFieldValueState.value = value
-        println(value.text)
+        val result = asciidoctor.convert(value.text, options, AsciidocParse::class.java)
+        println("value change ========${result.content}")
       }
     )
+
   }
 
   LaunchedEffect(Unit) {
